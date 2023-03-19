@@ -102,20 +102,32 @@ export function Aside() {
       <AsideContent>
         <ContentHeader>Filtros</ContentHeader>
         <ContentFilters>
-          <Select name="age" label="Idade" options={ageOptions} />
+          <Select
+            name="age"
+            label="Idade"
+            options={ageOptions}
+            direction="column"
+          />
 
           <Select
             name="energy"
             label="Nível de energia"
             options={energyOptions}
+            direction="column"
           />
 
-          <Select name="size" label="Porte do animal" options={sizeOptions} />
+          <Select
+            name="size"
+            label="Porte do animal"
+            options={sizeOptions}
+            direction="column"
+          />
 
           <Select
             name="independency"
             label="Nível de independência"
             options={independencyOptions}
+            direction="column"
           />
         </ContentFilters>
       </AsideContent>

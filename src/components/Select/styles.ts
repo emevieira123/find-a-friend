@@ -1,7 +1,13 @@
 import styled from 'styled-components'
 
-export const Filter = styled.div`
+interface FilterProps {
+  // isActive: boolean;
+  direction: 'row' | 'column'
+}
+
+export const Filter = styled.div<FilterProps>`
   display: flex;
+  flex-direction: ${(props) => props.direction};
   gap: 12px;
 `
 

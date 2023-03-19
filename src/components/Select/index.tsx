@@ -11,6 +11,8 @@ import {
 type SelectProps = ComponentProps<typeof FilterInput> & {
   label: string
   name: string
+  direction: 'row' | 'column'
+  disabled?: boolean
   options: {
     value: string | number
     label: string
@@ -18,15 +20,25 @@ type SelectProps = ComponentProps<typeof FilterInput> & {
   onChange?: (event: ChangeEvent<HTMLSelectElement>) => void
 }
 
-export function Select({ label, name, options, onChange }: SelectProps) {
+export function Select({
+  label,
+  name,
+  options,
+  onChange,
+  direction,
+  disabled,
+}: SelectProps) {
   return (
-    <Filter>
+    <Filter direction={direction}>
       <FilterLabel htmlFor={name}>{label}</FilterLabel>
       <FilterWrapper>
-        <FilterInput name={name} id={name} onChange={onChange}>
-          <FilterInputOption value="" disabled selected>
-            Selecione
-          </FilterInputOption>
+        <FilterInput
+          name={name}
+          id={name}
+          onChange={onChange}
+          disabled={disabled}
+        >
+          <FilterInputOption value="Selecione">Selecione</FilterInputOption>
           {options?.map((option) => {
             return (
               <FilterInputOption key={option.value} value={option.value}>

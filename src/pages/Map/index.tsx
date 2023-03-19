@@ -2,7 +2,6 @@ import { Aside } from '~/Aside'
 import { Card } from '~/Card'
 
 import chevron from '@/assets/icons/chevron-bottom-blue.svg'
-import dog from '@/assets/images/dog.png'
 
 import {
   Container,
@@ -12,11 +11,18 @@ import {
   HeaderSelect,
   Display,
 } from './styles'
+import useGetPets from './hooks/useGetPets'
+import { PetType } from './types'
+import { useSearchParams } from 'react-router-dom'
 
 export function Map() {
-  function handleFilterByPetType() {
-    // TO DO
-  }
+  const [searchParams] = useSearchParams()
+  const city = searchParams.get('cidade')
+  const { data: Pets } = useGetPets(city!)
+
+  // function handleFilterByPetType() {
+  //   // TO DO
+  // }
 
   return (
     <Container>
@@ -25,7 +31,7 @@ export function Map() {
       <Content>
         <Header>
           <p>
-            Encontre <span>324 amigos</span> na sua cidade
+            Encontrei <span>{Pets?.length} amigos</span> na sua cidade
           </p>
           <SelectWrapper>
             <HeaderSelect name="size" id="size">
@@ -37,14 +43,16 @@ export function Map() {
           </SelectWrapper>
         </Header>
         <Display>
-          <Card path={dog} type="dog" name="Alfredo" />
-          <Card path={dog} type="cat" name="Tobia" />
-          <Card path={dog} type="dog" name="Alfredo" />
-          <Card path={dog} type="cat" name="Tobia" />
-          <Card path={dog} type="dog" name="Alfredo" />
-          <Card path={dog} type="cat" name="Tobia" />
-          <Card path={dog} type="dog" name="Alfredo" />
-          <Card path={dog} type="cat" name="Tobia" />
+          {Pets?.map((pet: PetType) => {
+            return (
+              <Card
+                key={pet.id}
+                path={pet.photo_url}
+                type={pet.type}
+                name={pet.name}
+              />
+            )
+          })}
         </Display>
       </Content>
     </Container>

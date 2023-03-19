@@ -5,18 +5,6 @@ import ImgDogs from '../../assets/images/home-image-dogs.svg'
 import { FooterHome } from './components/Footer'
 
 export function Home() {
-  // function handleSearchPets() {
-  //   // TO DO
-  // }
-
-  // function handleChangeState() {
-  //   // TO DO
-  // }
-
-  // function handleChangeCity() {
-  //   // TO DO
-  // }
-
   return (
     <Container>
       <LogoContainer>

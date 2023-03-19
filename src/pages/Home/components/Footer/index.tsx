@@ -4,6 +4,9 @@ import useGetStates from '../../hooks/useGetStates'
 import { useState } from 'react'
 import useGetCitys from '../../hooks/useGetCitys'
 import { Select } from '@/components/Select'
+import { useNavigate } from 'react-router-dom'
+
+import { toast } from 'react-toastify'
 
 interface StateType {
   sigla: string
@@ -20,6 +23,8 @@ export function FooterHome() {
   const { data: Estados, isLoading: EstadosLoading } = useGetStates()
   const { data: Cidades, isLoading } = useGetCitys(stateSelected)
 
+  const navigate = useNavigate()
+
   const EstadosData = Estados?.map((estado: StateType) => ({
     label: estado.sigla,
     value: estado.sigla,
@@ -32,14 +37,19 @@ export function FooterHome() {
 
   function handleChangeState(e: any) {
     setStateSelected(e.target.value)
-    console.log(e.target.value)
   }
 
   function handleChangeCity(e: any) {
     setCitySelected(e.target.value)
   }
 
-  console.log(citySelected)
+  function handleSearchPets() {
+    if (!citySelected || !stateSelected) {
+      toast.warning('É obrigatório selecionar ao menos um estado e uma cidade')
+      return
+    }
+    navigate(`/map?cidade=${citySelected}`)
+  }
 
   return (
     <FooterContainer>
@@ -57,6 +67,7 @@ export function FooterHome() {
             label=""
             options={EstadosData}
             onChange={handleChangeState}
+            direction="row"
           ></Select>
         )}
 
@@ -66,10 +77,12 @@ export function FooterHome() {
             label=""
             options={CidadesData}
             onChange={handleChangeCity}
+            direction="row"
+            disabled={!stateSelected}
           ></Select>
         )}
 
-        <SearchButton>
+        <SearchButton onClick={handleSearchPets}>
           <img src={SearchIcon} alt="" />
         </SearchButton>
       </FilterContainer>
