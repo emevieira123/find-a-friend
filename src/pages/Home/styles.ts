@@ -43,35 +43,10 @@ export const FooterContainer = styled.div`
 export const FilterContainer = styled.div`
   display: flex;
   align-items: center;
+  gap: 1rem;
 
   span {
     font-size: 1rem;
-  }
-`
-
-export const StateSelect = styled.select`
-  background: transparent;
-  margin-left: 1rem;
-  color: ${(props) => props.theme.white};
-  border: 1px solid ${(props) => props.theme.white};
-  border-radius: 1.25rem;
-  padding: 19px 14px;
-
-  &:focus {
-    outline: none;
-  }
-`
-
-export const CitySelect = styled.select`
-  background: ${(props) => props.theme.darkRed};
-  margin-left: 0.5rem;
-  color: ${(props) => props.theme.white};
-  border: none;
-  border-radius: 1.25rem;
-  padding: 1.18rem 4rem 1.18rem 6.25rem;
-
-  &:focus {
-    outline: none;
   }
 `
 
@@ -81,7 +56,7 @@ export const SearchButton = styled.button`
   color: ${(props) => props.theme.darkBlue};
   border: none;
   border-radius: 1.25rem;
-  padding: 19px;
+  padding: 1rem 1.25rem;
   cursor: pointer;
   transition: all 0.3s;
 

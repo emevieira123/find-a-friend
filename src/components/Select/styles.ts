@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const Filter = styled.div`
   display: flex;
-  flex-direction: column;
   gap: 12px;
 `
 
@@ -37,6 +36,7 @@ export const FilterInput = styled.select`
   padding: 20px;
   appearance: none;
   position: relative;
+  margin-right: 1.25rem;
 
   &::before {
     content: '⌄';
