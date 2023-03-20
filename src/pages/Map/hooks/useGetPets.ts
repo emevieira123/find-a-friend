@@ -24,7 +24,12 @@ export default function useGetPets(
   independence?: string,
 ) {
   const resultQuery = useQuery(
-    [URLS.LISTA_PETS.replace(':city', city)],
+    [
+      URLS.LISTA_PETS.replace(':city', city),
+      {
+        params: { age, energy, size, independence },
+      },
+    ],
     () => getPets(city, age, energy, size, independence),
     {
       onError: (err) => {

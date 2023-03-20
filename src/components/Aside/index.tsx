@@ -22,16 +22,24 @@ import {
 
 interface AsideProps {
   setAge: React.Dispatch<React.SetStateAction<string>>
+  setEnergy: React.Dispatch<React.SetStateAction<number | undefined>>
+  setSize: React.Dispatch<React.SetStateAction<string>>
+  setIndependence: React.Dispatch<React.SetStateAction<string>>
 }
 
-export function Aside({ setAge }: AsideProps) {
+export function Aside({
+  setAge,
+  setEnergy,
+  setSize,
+  setIndependence,
+}: AsideProps) {
   function handleSearchPets() {
     // TO DO
   }
 
-  function handleChangeSearchFilters(e: any) {
-    setAge(e.target.value)
-  }
+  // function handleChangeSearchFilters(e: any) {
+  //   //
+  // }
 
   return (
     <Container>
@@ -53,7 +61,7 @@ export function Aside({ setAge }: AsideProps) {
             name="age"
             label="Idade"
             options={ageOptions}
-            onChange={handleChangeSearchFilters}
+            onChange={(e: any) => setAge(e.target.value)}
             direction="column"
           />
 
@@ -61,6 +69,7 @@ export function Aside({ setAge }: AsideProps) {
             name="energy"
             label="Nível de energia"
             options={energyOptions}
+            onChange={(e: any) => setEnergy(e.target.value)}
             direction="column"
           />
 
@@ -68,6 +77,7 @@ export function Aside({ setAge }: AsideProps) {
             name="size"
             label="Porte do animal"
             options={sizeOptions}
+            onChange={(e: any) => setSize(e.target.value)}
             direction="column"
           />
 
@@ -75,6 +85,7 @@ export function Aside({ setAge }: AsideProps) {
             name="independency"
             label="Nível de independência"
             options={independencyOptions}
+            onChange={(e: any) => setIndependence(e.target.value)}
             direction="column"
           />
         </ContentFilters>

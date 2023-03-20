@@ -19,15 +19,24 @@ import { useState } from 'react'
 export function Map() {
   const [searchParams] = useSearchParams()
   const city = searchParams.get('cidade')
+
   const [searchType, setSearchType] = useState('')
   const [age, setAge] = useState('')
-  const { data: Pets, isLoading } = useGetPets(city!, age)
+  const [energy, setEnergy] = useState<number>()
+  const [size, setSize] = useState('')
+  const [independence, setIndependence] = useState('')
+
+  const { data: Pets, isLoading } = useGetPets(
+    city!,
+    age,
+    energy,
+    size,
+    independence,
+  )
 
   function handleFilterByPetType(e: any) {
     setSearchType(e.target.value)
   }
-
-  console.log('Age', age)
 
   const filteredType =
     searchType?.length > 0
@@ -36,7 +45,12 @@ export function Map() {
 
   return (
     <Container>
-      <Aside setAge={setAge} />
+      <Aside
+        setAge={setAge}
+        setEnergy={setEnergy}
+        setSize={setSize}
+        setIndependence={setIndependence}
+      />
 
       <Content>
         <Header>

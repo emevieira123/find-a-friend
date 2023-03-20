@@ -38,7 +38,7 @@ export function Select({
           onChange={onChange}
           disabled={disabled}
         >
-          <FilterInputOption value="Selecione">Selecione</FilterInputOption>
+          <FilterInputOption value="">Selecione</FilterInputOption>
           {options?.map((option) => {
             return (
               <FilterInputOption key={option.value} value={option.value}>
