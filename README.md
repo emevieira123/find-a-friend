@@ -1,9 +1,7 @@
 # Green Chain Challenge
 ## Sobre o Green Chain Challenge
 
-O Green Chain Challenge é um projeto criado pela comunidade com o objetivo de simular situações reais que podem ser encontradas no mercado de trabalho. Ao participar do desafio, você terá a oportunidade de testar suas habilidades e conhecimentos em um ambiente prático.
-
-Ao participar do Green Chain Challenge, você poderá aprimorar suas habilidades em programação e adquirir conhecimentos relevantes para sua carreira. Para mais informações sobre o desafio, visite o link fornecido.
+O Green Chain Challenge é um projeto criado pela comunidade com o objetivo de simular situações reais que podem ser encontradas no mercado de trabalho. Ao participar do Green Chain Challenge, você terá a oportunidade de testar suas habilidades e conhecimentos em um ambiente prático e adquirir conhecimentos relevantes para sua carreira.
 
 <br />
 
