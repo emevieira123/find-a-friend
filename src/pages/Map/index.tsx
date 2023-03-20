@@ -14,45 +14,78 @@ import {
 import useGetPets from './hooks/useGetPets'
 import { PetType } from './types'
 import { useSearchParams } from 'react-router-dom'
+import { useState } from 'react'
 
 export function Map() {
   const [searchParams] = useSearchParams()
   const city = searchParams.get('cidade')
-  const { data: Pets } = useGetPets(city!)
+  const [searchType, setSearchType] = useState('')
+  const [age, setAge] = useState('')
+  const { data: Pets, isLoading } = useGetPets(city!, age)
 
-  // function handleFilterByPetType() {
-  //   // TO DO
-  // }
+  function handleFilterByPetType(e: any) {
+    setSearchType(e.target.value)
+  }
+
+  console.log('Age', age)
+
+  const filteredType =
+    searchType?.length > 0
+      ? Pets?.filter((pet: any) => pet.type.includes(searchType))
+      : []
 
   return (
     <Container>
-      <Aside />
+      <Aside setAge={setAge} />
 
       <Content>
         <Header>
           <p>
-            Encontrei <span>{Pets?.length} amigos</span> na sua cidade
+            Encontrei{' '}
+            <span>
+              {searchType ? filteredType?.length : Pets?.length} amigos
+            </span>{' '}
+            na sua cidade
           </p>
           <SelectWrapper>
-            <HeaderSelect name="size" id="size">
-              <option value="all">Gatos e Cachorros</option>
-              <option value="cats">Gatos</option>
-              <option value="dogs">Cachorros</option>
+            <HeaderSelect
+              name="size"
+              id="size"
+              onChange={handleFilterByPetType}
+            >
+              <option value="">Gatos e Cachorros</option>
+              <option value="cat">Gatos</option>
+              <option value="dog">Cachorros</option>
             </HeaderSelect>
             <img src={chevron} alt="" />
           </SelectWrapper>
         </Header>
         <Display>
-          {Pets?.map((pet: PetType) => {
-            return (
-              <Card
-                key={pet.id}
-                path={pet.photo_url}
-                type={pet.type}
-                name={pet.name}
-              />
-            )
-          })}
+          {isLoading ? (
+            <span>Carregando...</span>
+          ) : searchType ? (
+            filteredType?.map((pet: PetType) => {
+              return (
+                <Card
+                  key={pet.id}
+                  path={pet.photo_url}
+                  type={pet.type}
+                  name={pet.name}
+                />
+              )
+            })
+          ) : (
+            Pets?.map((pet: PetType) => {
+              return (
+                <Card
+                  key={pet.id}
+                  path={pet.photo_url}
+                  type={pet.type}
+                  name={pet.name}
+                />
+              )
+            })
+          )}
         </Display>
       </Content>
     </Container>

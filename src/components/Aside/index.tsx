@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { Select } from '@/components/Select'
 
 import logo from '@/assets/icons/logo.svg'
@@ -12,78 +13,24 @@ import {
   ContentFilters,
 } from './styles'
 
-const ageOptions = [
-  {
-    label: 'Filhote',
-    value: 'cub',
-  },
-  {
-    label: 'Adolescente',
-    value: 'adolescent',
-  },
-  {
-    label: 'Idoso',
-    value: 'elderly',
-  },
-]
-const energyOptions = [
-  {
-    label: 'Muito baixa',
-    value: 1,
-  },
-  {
-    label: 'Baixa',
-    value: 2,
-  },
-  {
-    label: 'Média',
-    value: 3,
-  },
-  {
-    label: 'Alta',
-    value: 4,
-  },
-  {
-    label: 'Muito alta',
-    value: 5,
-  },
-]
-const sizeOptions = [
-  {
-    label: 'Pequenino',
-    value: 'small',
-  },
-  {
-    label: 'Médio',
-    value: 'medium',
-  },
-  {
-    label: 'Grande',
-    value: 'big',
-  },
-]
-const independencyOptions = [
-  {
-    label: 'Baixo',
-    value: 'low',
-  },
-  {
-    label: 'Médio',
-    value: 'medium',
-  },
-  {
-    label: 'Alto',
-    value: 'high',
-  },
-]
+import {
+  ageOptions,
+  energyOptions,
+  independencyOptions,
+  sizeOptions,
+} from './utils/SelectOptions'
 
-export function Aside() {
+interface AsideProps {
+  setAge: React.Dispatch<React.SetStateAction<string>>
+}
+
+export function Aside({ setAge }: AsideProps) {
   function handleSearchPets() {
     // TO DO
   }
 
-  function handleChangeSearchFilters() {
-    // TO DO
+  function handleChangeSearchFilters(e: any) {
+    setAge(e.target.value)
   }
 
   return (
@@ -106,6 +53,7 @@ export function Aside() {
             name="age"
             label="Idade"
             options={ageOptions}
+            onChange={handleChangeSearchFilters}
             direction="column"
           />
 

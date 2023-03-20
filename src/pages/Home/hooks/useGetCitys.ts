@@ -1,6 +1,7 @@
 import { api } from '@/infra/api'
 import { URLS } from '@/infra/URLS'
 import { useQuery } from 'react-query'
+import { toast } from 'react-toastify'
 
 async function getCitys(sigla: string) {
   if (!sigla) return
@@ -16,6 +17,7 @@ export default function useGetCitys(sigla?: string) {
     {
       onError: (err) => {
         console.log(err)
+        toast.error('Sigla de UF inválida')
       },
     },
   )
