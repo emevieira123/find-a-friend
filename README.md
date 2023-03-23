@@ -23,6 +23,8 @@ Ao entrar na aplicação, a pessoa adotante pode filtrar os bichinhos de acordo 
  - [React Query](https://react-query-v3.tanstack.com/)
  - [Axios](https://axios-http.com/ptbr/docs/intro)
  - [React Toastify](https://fkhadra.github.io/react-toastify/introduction)
+ - [React Leaflet](https://react-leaflet.js.org/)
+ - [React Icons](https://react-icons.github.io/)
 
  # Instruções para rodar o projeto
  Primeiro, clone o projeto através do link abaixo:
