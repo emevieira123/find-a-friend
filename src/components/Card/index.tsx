@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import logo from '@/assets/icons/logo.svg'
 
 import { Container, Name, PetImage, TypeIcon } from './styles'
@@ -6,11 +7,12 @@ type CardProps = {
   path: string
   name: string
   type: 'dog' | 'cat'
+  onClick?: React.MouseEventHandler<HTMLSpanElement> | undefined
 }
 
-export function Card({ path, name, type }: CardProps) {
+export function Card({ path, name, type, onClick }: CardProps) {
   return (
-    <Container>
+    <Container onClick={onClick}>
       <PetImage>
         <img src={path} alt={`Foto de ${name}`} />
       </PetImage>

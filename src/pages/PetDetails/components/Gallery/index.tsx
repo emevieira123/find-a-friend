@@ -4,19 +4,20 @@ import { Banner, GalleryContainer, ImageGallery } from './styles'
 
 interface GalleryProps {
   petId: string
-  imgInitial?: string
 }
 
-export function Gallery({ petId, imgInitial }: GalleryProps) {
+export function Gallery({ petId }: GalleryProps) {
   const [active, setActive] = useState<number>(1)
 
   const { data: dataGallery } = useGetPetGallery(petId)
 
-  const [img, setImg] = useState<string | undefined>(imgInitial)
+  const initialImage = dataGallery?.[0]?.photo_url
+
+  const [img, setImg] = useState<string | undefined>(initialImage)
 
   return (
     <>
-      <Banner src={img || imgInitial} alt="" />
+      <Banner src={img || initialImage} alt="" />
       <GalleryContainer>
         {dataGallery?.map((gallery: any, index: number) => {
           return (

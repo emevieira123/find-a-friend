@@ -9,17 +9,25 @@ import { Container, Content, Divider, Sidebar, TextDescription } from './styles'
 
 import { GeoMap } from './components/GeoMap'
 import { InfoOrg } from './components/InfoOrg'
+import { Requirement } from './components/Requirement'
+import { ButtonContact } from './components/ButtonContact'
+import { useParams } from 'react-router-dom'
 
 export function PetDetails() {
+  const { petId } = useParams()
   const { data: dataPetDetails, isLoading: loadingDetails } = useGetPetDetails(
-    '137d9eb5-aae2-4aa2-958a-525ec830dde9',
+    petId!,
   )
+
+  function handleToGoBack() {
+    window.history.back()
+  }
 
   return (
     <>
       <Sidebar>
         <img src={logo} alt="" />
-        <button>
+        <button onClick={handleToGoBack}>
           <FaArrowLeft size={20} />
         </button>
       </Sidebar>
@@ -29,10 +37,7 @@ export function PetDetails() {
           <h1>Carregando...</h1>
         ) : (
           <Content>
-            <Gallery
-              petId="137d9eb5-aae2-4aa2-958a-525ec830dde9"
-              imgInitial={dataPetDetails?.photo_url}
-            />
+            <Gallery petId={petId!} />
             <TextDescription>
               <h1>{dataPetDetails?.name}</h1>
               <span>{dataPetDetails?.description}</span>
@@ -43,12 +48,22 @@ export function PetDetails() {
             <GeoMap cep={dataPetDetails?.org?.cep} />
 
             <Divider />
+
             <InfoOrg
               orgName={dataPetDetails?.org?.nome}
               orgAddress={dataPetDetails?.org?.address}
-              orgWhatsapp={dataPetDetails?.org?.whatsappNumber}
+              orgWhatsapp={dataPetDetails?.org?.whatsappNumber.slice(3)}
             />
+
             <Divider />
+
+            <Requirement petId={petId!} />
+
+            <Divider />
+
+            <ButtonContact
+              whatsappNumber={dataPetDetails?.org?.whatsappNumber.slice(3)}
+            />
           </Content>
         )}
       </Container>

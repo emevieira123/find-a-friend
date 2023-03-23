@@ -24,7 +24,7 @@ export const InfoOrgContent = styled.div`
     margin-bottom: 1rem;
   }
 
-  button {
+  a {
     width: 15rem;
     height: 3.3rem;
     border-radius: 5px;
@@ -32,11 +32,17 @@ export const InfoOrgContent = styled.div`
     margin-bottom: 0.5rem;
     background: rgb(13, 59, 102, 0.1);
     color: ${(props) => props.theme.darkBlue};
+    text-decoration: none;
     font-size: 1.125rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    transition: all 0.3s;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 `

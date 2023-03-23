@@ -1,20 +1,11 @@
 import { Aside } from '~/Aside'
-import { Card } from '~/Card'
 
-import chevron from '@/assets/icons/chevron-bottom-blue.svg'
-
-import {
-  Container,
-  Content,
-  SelectWrapper,
-  Header,
-  HeaderSelect,
-  Display,
-} from './styles'
+import { Container, Content } from './styles'
 import useGetPets from './hooks/useGetPets'
-import { PetType } from './types'
 import { useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
+import { ListPets } from './components/ListPets'
+import { HeaderListPets } from './components/HeaderListPets'
 
 export function Map() {
   const [searchParams] = useSearchParams()
@@ -53,54 +44,19 @@ export function Map() {
       />
 
       <Content>
-        <Header>
-          <p>
-            Encontrei{' '}
-            <span>
-              {searchType ? filteredType?.length : Pets?.length} amigos
-            </span>{' '}
-            na sua cidade
-          </p>
-          <SelectWrapper>
-            <HeaderSelect
-              name="size"
-              id="size"
-              onChange={handleFilterByPetType}
-            >
-              <option value="">Gatos e Cachorros</option>
-              <option value="cat">Gatos</option>
-              <option value="dog">Cachorros</option>
-            </HeaderSelect>
-            <img src={chevron} alt="" />
-          </SelectWrapper>
-        </Header>
-        <Display>
-          {isLoading ? (
-            <span>Carregando...</span>
-          ) : searchType ? (
-            filteredType?.map((pet: PetType) => {
-              return (
-                <Card
-                  key={pet.id}
-                  path={pet.photo_url}
-                  type={pet.type}
-                  name={pet.name}
-                />
-              )
-            })
-          ) : (
-            Pets?.map((pet: PetType) => {
-              return (
-                <Card
-                  key={pet.id}
-                  path={pet.photo_url}
-                  type={pet.type}
-                  name={pet.name}
-                />
-              )
-            })
-          )}
-        </Display>
+        <HeaderListPets
+          dataSources={Pets}
+          filter={filteredType}
+          searchType={searchType}
+          onChange={handleFilterByPetType}
+        />
+
+        <ListPets
+          dataSources={Pets}
+          filter={filteredType}
+          searchType={searchType}
+          loading={isLoading}
+        />
       </Content>
     </Container>
   )

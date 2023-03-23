@@ -10,11 +10,23 @@ interface CardProps {
 export function CardInfoPet({ dataSource }: CardProps) {
   function handlePorte(value: string) {
     if (value === 'small') {
-      return { size: 1, size_name: 'Pequenino' }
+      return {
+        size: 1,
+        size_name: 'Porte Pequeno',
+        environment: 'Ambiente normal',
+      }
     } else if (value === 'medium') {
-      return { size: 2, size_name: 'Médio' }
+      return {
+        size: 2,
+        size_name: 'Porte Médio',
+        environment: 'Ambiente médio',
+      }
     } else {
-      return { size: 3, size_name: 'Grande' }
+      return {
+        size: 3,
+        size_name: 'Porte Grande',
+        environment: 'Ambiente amplo',
+      }
     }
   }
 
@@ -38,17 +50,19 @@ export function CardInfoPet({ dataSource }: CardProps) {
       <CardPetInfo>
         <div style={{ width: '100%', display: 'flex', gap: '0.5rem' }}>
           {EnergyActive.slice(0, dataSource?.energy).map((active, index) => {
-            return <img src={active.icon} alt="" key={index} />
+            return <img src={active.icon} alt="Nível de energia" key={index} />
           })}
           {EnergyInactive.slice(dataSource?.energy).map((inactive, index) => {
-            return <img src={inactive.icon} alt="" key={index} />
+            return (
+              <img src={inactive.icon} alt="Nível de energia" key={index} />
+            )
           })}
         </div>
         <strong>{handleEnergy(dataSource?.energy)}</strong>
       </CardPetInfo>
       <CardPetInfo>
         <img style={{ width: '20px' }} src={IconAmbiente} alt="" />
-        <strong>Ambiente amplo</strong>
+        <strong>{handlePorte(dataSource?.size).environment}</strong>
       </CardPetInfo>
       <CardPetInfo>
         <div style={{ width: '100%', display: 'flex', gap: '0.5rem' }}>
