@@ -18,6 +18,21 @@ export function CardInfoPet({ dataSource }: CardProps) {
     }
   }
 
+  function handleEnergy(value: number) {
+    switch (value) {
+      case 1:
+        return 'Muito Baixa'
+      case 2:
+        return 'Baixa'
+      case 3:
+        return 'Média'
+      case 4:
+        return 'Alta'
+      default:
+        return 'Muito Alta'
+    }
+  }
+
   return (
     <ContainerInfoPet>
       <CardPetInfo>
@@ -29,7 +44,7 @@ export function CardInfoPet({ dataSource }: CardProps) {
             return <img src={inactive.icon} alt="" key={index} />
           })}
         </div>
-        <strong>Muita energia</strong>
+        <strong>{handleEnergy(dataSource?.energy)}</strong>
       </CardPetInfo>
       <CardPetInfo>
         <img style={{ width: '20px' }} src={IconAmbiente} alt="" />

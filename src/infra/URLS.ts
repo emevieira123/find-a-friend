@@ -5,4 +5,5 @@ export enum URLS {
   LISTA_PETS = 'pets/:city',
   PET_DETAILS = 'pets/show/:pet_id',
   PET_GALLERY = 'pets/gallery/:pet_id',
+  COORDINATES = '/location/coordinates/:cep',
 }
