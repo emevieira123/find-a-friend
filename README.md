@@ -7,11 +7,18 @@ Ao participar do Green Chain Challenge, você terá a oportunidade de testar sua
 
 A cada projeto, recebemos todas as informações necessárias: a história e o perfil da empresa fictícia que está contratando, o anúncio da vaga fictícia com a descrição do que devo desempenhar como desenvolvedor, as datas das sprints, as tarefas e como serão feitas as entregas.
 
-<br />
+<!-- <br />
 
 <img src="https://github.com/gustavosorati/rocketseat-gcc/raw/main/_docs/capa.jpg" alt="" />
 
-<br />
+<br /> -->
+
+## 🖥️ Preview do projeto
+
+https://user-images.githubusercontent.com/33058881/227644287-2e1bd966-2113-46be-a04c-803ae07126ca.mp4
+
+
+
 
 # Sobre o projeto FindAFriend
 
