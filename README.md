@@ -1,7 +1,11 @@
-# Green Chain Challenge
+# Green Chain Challenge - Rocketseat
 ## Sobre o Green Chain Challenge
 
-O Green Chain Challenge é um projeto criado pela comunidade com o objetivo de simular situações reais que podem ser encontradas no mercado de trabalho. Ao participar do Green Chain Challenge, você terá a oportunidade de testar suas habilidades e conhecimentos em um ambiente prático e adquirir conhecimentos relevantes para sua carreira.
+O Green Chain Challenge é um projeto para a comunidade com desafios que simulam situações reais do mercado de trabalho em um sistema de role play com muito código!
+
+Ao participar do Green Chain Challenge, você terá a oportunidade de testar suas habilidades e conhecimentos em um ambiente prático e adquirir conhecimentos relevantes para sua carreira.
+
+A cada projeto, recebemos todas as informações necessárias: a história e o perfil da empresa fictícia que está contratando, o anúncio da vaga fictícia com a descrição do que devo desempenhar como desenvolvedor, as datas das sprints, as tarefas e como serão feitas as entregas.
 
 <br />
 
