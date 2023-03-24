@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import logo from '@/assets/icons/logo.svg'
 
-import { Container, Name, PetImage, TypeIcon } from './styles'
+import { ContainerCard, Name, PetImage, TypeIcon } from './styles'
 
 type CardProps = {
   path: string
@@ -12,7 +12,7 @@ type CardProps = {
 
 export function Card({ path, name, type, onClick }: CardProps) {
   return (
-    <Container onClick={onClick}>
+    <ContainerCard onClick={onClick}>
       <PetImage>
         <img src={path} alt={`Foto de ${name}`} />
       </PetImage>
@@ -26,6 +26,6 @@ export function Card({ path, name, type, onClick }: CardProps) {
         </TypeIcon>
         <Name>{name}</Name>
       </div>
-    </Container>
+    </ContainerCard>
   )
 }

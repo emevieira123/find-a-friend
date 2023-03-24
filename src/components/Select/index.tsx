@@ -28,6 +28,15 @@ export function Select({
   direction,
   disabled,
 }: SelectProps) {
+  function handlePlaceholderSelect(value: string) {
+    if (value === 'UF') {
+      return 'UF'
+    } else if (value === 'Cidades') {
+      return 'Cidade'
+    } else {
+      return 'Selecione'
+    }
+  }
   return (
     <Filter direction={direction}>
       <FilterLabel htmlFor={name}>{label}</FilterLabel>
@@ -38,7 +47,9 @@ export function Select({
           onChange={onChange}
           disabled={disabled}
         >
-          <FilterInputOption value="">Selecione</FilterInputOption>
+          <FilterInputOption value="">
+            {handlePlaceholderSelect(name)}
+          </FilterInputOption>
           {options?.map((option) => {
             return (
               <FilterInputOption key={option.value} value={option.value}>
@@ -47,7 +58,7 @@ export function Select({
             )
           })}
         </FilterInput>
-        <img src={chevron} alt="" />
+        <img src={chevron} alt="" style={{ width: '13px' }} />
       </FilterWrapper>
     </Filter>
   )

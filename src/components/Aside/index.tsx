@@ -19,6 +19,12 @@ import {
   independencyOptions,
   sizeOptions,
 } from './utils/SelectOptions'
+import { useState } from 'react'
+import useGetStates from '@/pages/Home/hooks/useGetStates'
+import useGetCitys from '@/pages/Home/hooks/useGetCitys'
+import { CitysType, StateType } from '@/pages/Home/components/Footer'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 interface AsideProps {
   setAge: React.Dispatch<React.SetStateAction<string>>
@@ -33,13 +39,32 @@ export function Aside({
   setSize,
   setIndependence,
 }: AsideProps) {
-  function handleSearchPets() {
-    // TO DO
-  }
+  const [stateSelected, setStateSelected] = useState('')
+  const [citySelected, setCitySelected] = useState('')
+  const { data: Estados, isLoading: EstadosLoading } = useGetStates()
+  const { data: Cidades, isLoading } = useGetCitys(stateSelected)
 
-  // function handleChangeSearchFilters(e: any) {
-  //   //
-  // }
+  const navigate = useNavigate()
+
+  const EstadosData = Estados?.map((estado: StateType) => ({
+    label: estado.sigla,
+    value: estado.sigla,
+  }))
+
+  const CidadesData = Cidades?.map((cidade: CitysType) => ({
+    label: cidade?.name,
+    value: cidade?.name,
+  }))
+
+  function handleSearchPets() {
+    if (!citySelected || !stateSelected) {
+      toast.warning('É obrigatório selecionar ao menos um estado e uma cidade')
+      return
+    }
+    navigate(`/map?cidade=${citySelected}`)
+    setStateSelected('')
+    setCitySelected('')
+  }
 
   return (
     <Container>
@@ -47,8 +72,27 @@ export function Aside({
         <div>
           <img src={logo} alt="" />
           <HeaderInput>
-            <input type="text" placeholder="Insira uma cidade" />
-            <button>
+            {!EstadosLoading && (
+              <Select
+                name="UF"
+                label=""
+                options={EstadosData}
+                onChange={(e) => setStateSelected(e.target.value)}
+                direction="row"
+              ></Select>
+            )}
+
+            {!isLoading && (
+              <Select
+                name="Cidades"
+                label=""
+                options={CidadesData}
+                onChange={(e) => setCitySelected(e.target.value)}
+                direction="row"
+                disabled={!stateSelected}
+              ></Select>
+            )}
+            <button onClick={handleSearchPets}>
               <img src={search} alt="ícone de lupa" />
             </button>
           </HeaderInput>

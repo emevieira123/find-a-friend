@@ -1,14 +1,13 @@
 import styled from 'styled-components'
 
 interface FilterProps {
-  // isActive: boolean;
   direction: 'row' | 'column'
 }
 
 export const Filter = styled.div<FilterProps>`
   display: flex;
   flex-direction: ${(props) => props.direction};
-  gap: 12px;
+  gap: ${(props) => (props.direction === 'column' ? '12px' : '')};
 `
 
 export const FilterLabel = styled.label`
@@ -39,7 +38,7 @@ export const FilterInput = styled.select`
   border-radius: 15px;
   border: none;
   outline: none;
-  padding: 20px;
+  padding: 20px 36px 20px 20px;
   appearance: none;
   position: relative;
   margin-right: 1.25rem;

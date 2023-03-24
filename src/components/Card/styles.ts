@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-  max-width: 280px;
+export const ContainerCard = styled.div`
+  /* max-width: 280px; */
   width: 100%;
   display: flex;
   align-items: center;
@@ -54,12 +54,14 @@ export const TypeIcon = styled.div`
 `
 
 export const PetImage = styled.div`
+  width: 100%;
   object-fit: cover;
 
   img {
     width: 100%;
     height: 12.5rem;
     object-fit: cover;
+    border-radius: 20px;
   }
 `
 

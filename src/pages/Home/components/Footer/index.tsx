@@ -8,11 +8,11 @@ import { useNavigate } from 'react-router-dom'
 
 import { toast } from 'react-toastify'
 
-interface StateType {
+export interface StateType {
   sigla: string
 }
 
-interface CitysType {
+export interface CitysType {
   code: string
   name: string
 }
@@ -49,6 +49,8 @@ export function FooterHome() {
       return
     }
     navigate(`/map?cidade=${citySelected}`)
+    setStateSelected('')
+    setCitySelected('')
   }
 
   return (
