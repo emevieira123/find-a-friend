@@ -3,10 +3,17 @@ import { URLS } from '@/infra/URLS'
 import { useQuery } from 'react-query'
 import { toast } from 'react-toastify'
 
+interface TypeRequirement {
+  adoption_requirements: {
+    id: string
+    title: string
+  }[]
+}
+
 async function getRequirements(petId: string) {
   if (!petId) return
   return await api
-    .get(URLS.REQUIREMENTS.replace(':pet_id', petId))
+    .get<TypeRequirement>(URLS.REQUIREMENTS.replace(':pet_id', petId))
     .then((resp) => resp.data.adoption_requirements)
 }
 

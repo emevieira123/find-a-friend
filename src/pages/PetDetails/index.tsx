@@ -43,16 +43,16 @@ export function PetDetails() {
               <span>{dataPetDetails?.description}</span>
             </TextDescription>
 
-            <CardInfoPet dataSource={dataPetDetails} />
+            <CardInfoPet dataSource={dataPetDetails!} />
 
-            <GeoMap cep={dataPetDetails?.org?.cep} />
+            <GeoMap cep={dataPetDetails?.org?.cep!} />
 
             <Divider />
 
             <InfoOrg
-              orgName={dataPetDetails?.org?.nome}
-              orgAddress={dataPetDetails?.org?.address}
-              orgWhatsapp={dataPetDetails?.org?.whatsappNumber.slice(3)}
+              orgName={dataPetDetails?.org?.nome!}
+              orgAddress={dataPetDetails?.org?.address!}
+              orgWhatsapp={dataPetDetails?.org?.whatsappNumber.slice(3)!}
             />
 
             <Divider />
@@ -62,7 +62,7 @@ export function PetDetails() {
             <Divider />
 
             <ButtonContact
-              whatsappNumber={dataPetDetails?.org?.whatsappNumber.slice(3)}
+              whatsappNumber={dataPetDetails?.org?.whatsappNumber.slice(3)!}
             />
           </Content>
         )}

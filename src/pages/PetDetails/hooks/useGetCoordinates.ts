@@ -2,11 +2,17 @@ import { api } from '@/infra/api'
 import { URLS } from '@/infra/URLS'
 import { useQuery } from 'react-query'
 import { toast } from 'react-toastify'
+interface TypeCoordinates {
+  coordinates: {
+    latitude: number
+    longitude: number
+  }
+}
 
 async function getCoordinates(cep: string) {
   if (!cep) return
   return await api
-    .get(URLS.COORDINATES.replace(':cep', cep))
+    .get<TypeCoordinates>(URLS.COORDINATES.replace(':cep', cep))
     .then((resp) => resp.data.coordinates)
 }
 

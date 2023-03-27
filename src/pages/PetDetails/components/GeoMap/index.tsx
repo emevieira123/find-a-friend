@@ -25,7 +25,7 @@ export function GeoMap({ cep }: GeoMapProps) {
     <ContainerGeoMap>
       {!loadingCoordinates && (
         <ContainerMap
-          center={[coordinates?.latitude, coordinates?.longitude]}
+          center={[coordinates?.latitude!, coordinates?.longitude!]}
           zoom={13}
           scrollWheelZoom={false}
         >
@@ -35,7 +35,7 @@ export function GeoMap({ cep }: GeoMapProps) {
           />
           <Marker
             icon={IconLocationMap}
-            position={[coordinates?.latitude, coordinates?.longitude]}
+            position={[coordinates?.latitude!, coordinates?.longitude!]}
           >
             {/* <Popup>
               Essa é a localização do <br /> seu novo amiguinho.

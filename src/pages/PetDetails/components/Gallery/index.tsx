@@ -6,6 +6,10 @@ interface GalleryProps {
   petId: string
 }
 
+interface PhotoType {
+  photo_url: string
+}
+
 export function Gallery({ petId }: GalleryProps) {
   const [active, setActive] = useState<number>(1)
 
@@ -19,7 +23,7 @@ export function Gallery({ petId }: GalleryProps) {
     <>
       <Banner src={img || initialImage} alt="" />
       <GalleryContainer>
-        {dataGallery?.map((gallery: any, index: number) => {
+        {dataGallery?.map((gallery: PhotoType, index: number) => {
           return (
             <ImageGallery
               key={index + 1}

@@ -2,9 +2,10 @@ import { EnergyActive, EnergyInactive } from '../../utils/Energy'
 import { SizeActive, SizeInactive } from '../../utils/Size'
 import { CardPetInfo, ContainerInfoPet } from './styles'
 import IconAmbiente from '../../../../assets/icons/AmbienteIcon.svg'
+import { PetType } from '../../types/PetType'
 
 interface CardProps {
-  dataSource: any
+  dataSource: PetType
 }
 
 export function CardInfoPet({ dataSource }: CardProps) {
