@@ -1,6 +1,6 @@
 import { useGetCoordinates } from '../../hooks/useGetCoordinates'
 import { Marker, TileLayer } from 'react-leaflet'
-import { ContainerGeoMap, ContainerMap } from './styles'
+import { ButtonGoogleMaps, ContainerGeoMap, ContainerMap } from './styles'
 
 import Leaflet from 'leaflet'
 
@@ -43,7 +43,12 @@ export function GeoMap({ cep }: GeoMapProps) {
           </Marker>
         </ContainerMap>
       )}
-      <strong>Ver rotas no google maps</strong>
+      <ButtonGoogleMaps
+        href={`https://www.google.com/maps/dir/?api=1&destination=${coordinates?.latitude},${coordinates?.longitude}`}
+        target="_blank"
+      >
+        Ver rotas no google maps
+      </ButtonGoogleMaps>
     </ContainerGeoMap>
   )
 }

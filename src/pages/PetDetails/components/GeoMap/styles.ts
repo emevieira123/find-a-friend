@@ -9,20 +9,26 @@ export const ContainerGeoMap = styled.div`
 
   display: flex;
   flex-direction: column;
+`
 
-  strong {
-    height: 4rem;
-    font-size: 1.125rem;
-    color: ${(props) => props.theme.yellow};
-    border-bottom-left-radius: 2rem;
-    border-bottom-right-radius: 2rem;
-    cursor: pointer;
+export const ButtonGoogleMaps = styled.a`
+  height: 4rem;
+  font-size: 1.125rem;
+  color: ${(props) => props.theme.yellow};
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  text-decoration: none;
+  cursor: pointer;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: yellow;
   }
 `
+
 export const ContainerMap = styled(MapContainer)`
   width: 100%;
   height: 14.5rem;
