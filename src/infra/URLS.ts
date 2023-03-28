@@ -13,4 +13,6 @@ export enum URLS {
   HOME = '/',
   MAP = '/map',
   DETAILS_PET_WEB = '/pet-details/:petId',
+  LOGIN = '/login',
+  REGISTER = '/register',
 }
