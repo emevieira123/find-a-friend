@@ -59,6 +59,11 @@ export const InputWrapper = styled.div`
   padding: 18px;
 `
 
+export const TextErrorMessage = styled.span`
+  color: ${(props) => props.theme.red};
+  margin-top: -15px;
+`
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -113,4 +118,8 @@ export const Button = styled.button`
   border-radius: 20px;
   padding: 19px auto;
   border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `

@@ -6,16 +6,19 @@ import { defaultTheme } from './styles/themes/default'
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { AuthProvider } from './context/auth'
 
 function App() {
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
-      <GlobalStyles />
-      <ToastContainer autoClose={3000} theme="dark" />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={defaultTheme}>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+        <GlobalStyles />
+        <ToastContainer autoClose={3000} theme="dark" />
+      </ThemeProvider>
+    </AuthProvider>
   )
 }
 

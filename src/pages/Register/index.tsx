@@ -10,24 +10,28 @@ import {
 } from './styles'
 
 import LogoHorizontal from '../../assets/icons/logo-horizontal.svg'
-// import Pets from '../../assets/icons/pets.svg'
-import Eye from '../../assets/icons/password-eye.svg'
+import Visibility from '../../assets/icons/visibility.svg'
+import VisibilityOff from '../../assets/icons/visibility-off.svg'
+// import Eye from '../../assets/icons/password-eye.svg'
+import { useState } from 'react'
 
 export function Register() {
-  function handleRegisterOrganization() {
-    // TO dO
-  }
+  const [visiblePassword, setVisiblePassword] = useState('password')
+  const [visibleConfirmPassword, setVisibleConfirmPassword] =
+    useState('password')
+  // function handleRegisterOrganization() {
+  //   // TO dO
+  // }
 
-  function handleRenderMapLocation() {
-    // TO DO
-  }
+  // function handleRenderMapLocation() {
+  //   // TO DO
+  // }
 
   return (
     <Wrapper>
       <Container>
         <Card>
           <img src={LogoHorizontal} className="logo" alt="" />
-          {/* <img src={Pets} alt="" /> */}
         </Card>
         <FormWrapper>
           <h1>Cadastre sua organização</h1>
@@ -40,6 +44,11 @@ export function Register() {
                 id="email"
                 placeholder="mayk@email.com"
               />
+            </InputWrapper>
+
+            <label htmlFor="address">Cep</label>
+            <InputWrapper>
+              <input type="text" name="cep" id="cep" placeholder="12345-000" />
             </InputWrapper>
 
             <label htmlFor="address">Endereço</label>
@@ -58,7 +67,7 @@ export function Register() {
                 type="text"
                 name="contact"
                 id="contact"
-                placeholder="99 99999 9999"
+                placeholder="(99) 99999-9999"
               />
             </InputWrapper>
 
@@ -70,7 +79,17 @@ export function Register() {
                 id="password"
                 placeholder="Senha"
               />
-              <img onClick={() => {}} src={Eye} alt="" />
+              <img
+                onClick={() => {
+                  visiblePassword === 'password'
+                    ? setVisiblePassword('text')
+                    : setVisiblePassword('password')
+                }}
+                src={
+                  visiblePassword === 'password' ? VisibilityOff : Visibility
+                }
+                alt=""
+              />
             </InputWrapper>
 
             <label htmlFor="confirmPassword">Confirmar senha</label>
@@ -81,7 +100,19 @@ export function Register() {
                 id="confirmPassword"
                 placeholder="Confirme sua senha"
               />
-              <img onClick={() => {}} src={Eye} alt="" />
+              <img
+                onClick={() => {
+                  visibleConfirmPassword === 'password'
+                    ? setVisibleConfirmPassword('text')
+                    : setVisibleConfirmPassword('password')
+                }}
+                src={
+                  visibleConfirmPassword === 'password'
+                    ? VisibilityOff
+                    : Visibility
+                }
+                alt=""
+              />
             </InputWrapper>
 
             <Buttons>

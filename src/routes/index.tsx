@@ -1,4 +1,6 @@
+import { PrivateRouter } from '@/infra/PrivateRouter'
 import { URLS } from '@/infra/URLS'
+import { Dashboard } from '@/pages/Dashboard'
 import { Login } from '@/pages/Login'
 import { PetDetails } from '@/pages/PetDetails'
 import { Register } from '@/pages/Register'
@@ -14,6 +16,15 @@ export function Router() {
       <Route path={URLS.DETAILS_PET_WEB} element={<PetDetails />} />
       <Route path={URLS.LOGIN} element={<Login />} />
       <Route path={URLS.REGISTER} element={<Register />} />
+
+      <Route
+        path="/dashboard"
+        element={
+          <PrivateRouter>
+            <Dashboard />
+          </PrivateRouter>
+        }
+      />
     </Routes>
   )
 }
