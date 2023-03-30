@@ -1,4 +1,4 @@
-import { PrivateRouter } from '@/infra/PrivateRouter'
+import { PrivateRouter, SessionStarted } from '@/infra/PrivateRouter'
 import { URLS } from '@/infra/URLS'
 import { Dashboard } from '@/pages/Dashboard'
 import { Login } from '@/pages/Login'
@@ -14,9 +14,22 @@ export function Router() {
       <Route path={URLS.HOME} element={<Home />} />
       <Route path={URLS.MAP} element={<Map />} />
       <Route path={URLS.DETAILS_PET_WEB} element={<PetDetails />} />
-      <Route path={URLS.LOGIN} element={<Login />} />
-      <Route path={URLS.REGISTER} element={<Register />} />
-
+      <Route
+        path={URLS.LOGIN}
+        element={
+          <SessionStarted>
+            <Login />
+          </SessionStarted>
+        }
+      />
+      <Route
+        path={URLS.REGISTER}
+        element={
+          <SessionStarted>
+            <Register />
+          </SessionStarted>
+        }
+      />
       <Route
         path="/dashboard"
         element={

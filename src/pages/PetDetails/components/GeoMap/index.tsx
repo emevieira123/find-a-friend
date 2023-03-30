@@ -18,37 +18,48 @@ const IconLocationMap = Leaflet.icon({
 })
 
 export function GeoMap({ cep }: GeoMapProps) {
-  const { data: coordinates, isLoading: loadingCoordinates } =
+  const { data: dataLocation, isLoading: loadingCoordinates } =
     useGetCoordinates(cep)
 
   return (
     <ContainerGeoMap>
       {!loadingCoordinates && (
-        <ContainerMap
-          center={[coordinates?.latitude!, coordinates?.longitude!]}
-          zoom={13}
-          scrollWheelZoom={false}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker
-            icon={IconLocationMap}
-            position={[coordinates?.latitude!, coordinates?.longitude!]}
-          >
-            {/* <Popup>
-              Essa é a localização do <br /> seu novo amiguinho.
-            </Popup> */}
-          </Marker>
-        </ContainerMap>
+        <MapRender
+          latitude={dataLocation?.coordinates.latitude!}
+          longitude={dataLocation?.coordinates.longitude!}
+        />
       )}
       <ButtonGoogleMaps
-        href={`https://www.google.com/maps/dir/?api=1&destination=${coordinates?.latitude},${coordinates?.longitude}`}
+        href={`https://www.google.com/maps/dir/?api=1&destination=${dataLocation?.coordinates.latitude},${dataLocation?.coordinates.longitude}`}
         target="_blank"
       >
         Ver rotas no google maps
       </ButtonGoogleMaps>
     </ContainerGeoMap>
+  )
+}
+
+interface MapRenderProps {
+  latitude: number
+  longitude: number
+}
+
+export function MapRender({ latitude, longitude }: MapRenderProps) {
+  return (
+    <ContainerMap
+      center={[latitude, longitude!]}
+      zoom={13}
+      scrollWheelZoom={false}
+    >
+      <TileLayer
+        attribution='&copy; <a href="">OpenStreetMap</a> contributors'
+        url={`https://maps.geoapify.com/v1/tile/positron/{z}/{x}/{y}.png?&apiKey=b03a45222f3c4983b87d57a8eb5d2ae3`}
+      />
+      <Marker icon={IconLocationMap} position={[latitude, longitude]}>
+        {/* <Popup>
+              Essa é a localização do <br /> seu novo amiguinho.
+            </Popup> */}
+      </Marker>
+    </ContainerMap>
   )
 }

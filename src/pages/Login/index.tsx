@@ -48,8 +48,6 @@ export function Login() {
     resolver: yupResolver(schema),
   })
 
-  console.log(errors)
-
   async function handleLogin(data: FormData, e: any) {
     e.preventDefault()
     try {
@@ -59,7 +57,6 @@ export function Login() {
     } catch (err) {
       setIsLoading(isLoading)
     }
-    console.log(data)
     reset()
   }
 
@@ -72,7 +69,6 @@ export function Login() {
       <Container>
         <Card>
           <img src={LogoHorizontal} className="logo" alt="" />
-          {/* <img src={Pets} alt="" /> */}
         </Card>
         <FormWrapper>
           <h1>Boas-vindas!</h1>
