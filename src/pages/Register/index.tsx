@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useNavigate } from 'react-router-dom'
+import { FormRegisterData, schema } from './types'
+import { useRegisterOrganization } from './hooks/useRegisterOrganization'
+import { MapLocation } from '../PetDetails/components/GeoMap'
+import { useGetCoordinates } from '../PetDetails/hooks/useGetCoordinates'
+import { Spinner } from '@/components/Spinner'
+import InputMask from 'react-input-mask'
 
 import {
   Wrapper,
@@ -17,10 +24,7 @@ import {
 import LogoHorizontal from '../../assets/icons/logo-horizontal.svg'
 import Visibility from '../../assets/icons/visibility.svg'
 import VisibilityOff from '../../assets/icons/visibility-off.svg'
-import { FormRegisterData, schema } from './types'
-import { useRegisterOrganization } from './hooks/useRegisterOrganization'
-import { MapRender } from '../PetDetails/components/GeoMap'
-import { useGetCoordinates } from '../PetDetails/hooks/useGetCoordinates'
+import { CepInput } from '@/components/Inputs/CepInput'
 
 export function Register() {
   const [cep, setCep] = useState('')
@@ -37,22 +41,28 @@ export function Register() {
     resolver: yupResolver(schema),
   })
 
-  const { mutate: saveRegistration } = useRegisterOrganization(() => 0)
+  const { mutate: saveRegistration, isLoading } = useRegisterOrganization(() =>
+    handleSuccessRequest(),
+  )
+
+  const navigate = useNavigate()
+
+  function handleSuccessRequest() {
+    navigate('/login')
+    reset()
+  }
 
   const { data: dataLocation, isLoading: loadingCoordinates } =
     useGetCoordinates(cep)
 
-  console.log('coordinates', dataLocation)
-
   function handleRegisterOrganization(data: FormRegisterData) {
     console.log(data)
     saveRegistration(data)
-    reset()
   }
 
-  // function handleRenderMapLocation() {
-  //   // TO DO
-  // }
+  function handleMapLocation(e: any) {
+    setCep(e.target.value)
+  }
 
   useEffect(() => {
     reset({
@@ -95,13 +105,14 @@ export function Register() {
 
             <label htmlFor="cep">Cep</label>
             <InputWrapper>
-              <input
+              <CepInput
+                // mask="99999-999"
                 type="text"
                 {...register('cep')}
                 name="cep"
                 id="cep"
                 placeholder="12345-000"
-                onBlur={(e) => setCep(e.target.value)}
+                onBlur={handleMapLocation}
               />
             </InputWrapper>
             <TextErrorMessage>{errors.cep?.message}</TextErrorMessage>
@@ -112,7 +123,6 @@ export function Register() {
                 type="text"
                 {...register('address')}
                 name="address"
-                // value={dataLocation?.address}
                 id="address"
                 placeholder="Rua do Meio, 1825"
               />
@@ -120,7 +130,7 @@ export function Register() {
             <TextErrorMessage>{errors.address?.message}</TextErrorMessage>
 
             {!loadingCoordinates && (
-              <MapRender
+              <MapLocation
                 latitude={dataLocation?.coordinates.latitude! || 0}
                 longitude={dataLocation?.coordinates.longitude! || 0}
               />
@@ -128,7 +138,8 @@ export function Register() {
 
             <label htmlFor="whatsappNumber">Whatsapp</label>
             <InputWrapper>
-              <input
+              <InputMask
+                mask="(99) 99999-9999"
                 type="text"
                 {...register('whatsappNumber')}
                 name="whatsappNumber"
@@ -192,7 +203,7 @@ export function Register() {
 
             <Buttons>
               <Button type="submit" onClick={() => {}} className="primary">
-                Cadastrar
+                {!isLoading ? 'Cadastrar' : <Spinner />}
               </Button>
             </Buttons>
           </Form>

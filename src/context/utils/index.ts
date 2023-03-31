@@ -22,6 +22,8 @@ export async function LoginRequest(email: string, password: string) {
       password,
     })
 
+    console.log(request)
+
     return request.data
   } catch (error: any) {
     if (error.response.status === 401 || error.response.status === 404) {

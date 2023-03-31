@@ -20,7 +20,7 @@ export const PrivateRouter = ({ children }: { children: JSX.Element }) => {
 export const SessionStarted = ({ children }: { children: JSX.Element }) => {
   const userLocalStorage = getUserLocalStorage()
   const navigate = useNavigate()
-  //
+
   if (userLocalStorage?.token) {
     navigate('/dashboard')
     return <Dashboard />

@@ -126,4 +126,8 @@ export const Button = styled.button`
   border-radius: 20px;
   padding: 19px auto;
   border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `

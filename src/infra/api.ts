@@ -16,7 +16,6 @@ api.interceptors.request.use((config: any) => {
 api.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
   if (err.response.status === 401) {
     localStorage.clear()
-    window.location.reload()
   }
   return Promise.reject(err)
 })

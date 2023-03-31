@@ -24,7 +24,7 @@ export function GeoMap({ cep }: GeoMapProps) {
   return (
     <ContainerGeoMap>
       {!loadingCoordinates && (
-        <MapRender
+        <MapLocation
           latitude={dataLocation?.coordinates.latitude!}
           longitude={dataLocation?.coordinates.longitude!}
         />
@@ -39,12 +39,12 @@ export function GeoMap({ cep }: GeoMapProps) {
   )
 }
 
-interface MapRenderProps {
+interface MapLocationProps {
   latitude: number
   longitude: number
 }
 
-export function MapRender({ latitude, longitude }: MapRenderProps) {
+export function MapLocation({ latitude, longitude }: MapLocationProps) {
   return (
     <ContainerMap
       center={[latitude, longitude!]}
