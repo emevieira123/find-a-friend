@@ -4,7 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom'
 import { FormRegisterData, schema } from './types'
 import { useRegisterOrganization } from './hooks/useRegisterOrganization'
-import { MapLocation } from '../PetDetails/components/GeoMap'
 import { useGetCoordinates } from '../PetDetails/hooks/useGetCoordinates'
 import { CepInput } from '@/components/Inputs/CepInput'
 import { PhoneInput } from '@/components/Inputs/PhoneInput'
@@ -25,6 +24,7 @@ import {
 import LogoHorizontal from '../../assets/icons/logo-horizontal.svg'
 import Visibility from '../../assets/icons/visibility.svg'
 import VisibilityOff from '../../assets/icons/visibility-off.svg'
+import { MapLocation } from '../PetDetails/components/GeoMap/MapLocation'
 
 export function Register() {
   const [cep, setCep] = useState('')
