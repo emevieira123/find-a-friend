@@ -6,8 +6,9 @@ import { FormRegisterData, schema } from './types'
 import { useRegisterOrganization } from './hooks/useRegisterOrganization'
 import { MapLocation } from '../PetDetails/components/GeoMap'
 import { useGetCoordinates } from '../PetDetails/hooks/useGetCoordinates'
+import { CepInput } from '@/components/Inputs/CepInput'
+import { PhoneInput } from '@/components/Inputs/PhoneInput'
 import { Spinner } from '@/components/Spinner'
-import InputMask from 'react-input-mask'
 
 import {
   Wrapper,
@@ -24,7 +25,6 @@ import {
 import LogoHorizontal from '../../assets/icons/logo-horizontal.svg'
 import Visibility from '../../assets/icons/visibility.svg'
 import VisibilityOff from '../../assets/icons/visibility-off.svg'
-import { CepInput } from '@/components/Inputs/CepInput'
 
 export function Register() {
   const [cep, setCep] = useState('')
@@ -106,11 +106,9 @@ export function Register() {
             <label htmlFor="cep">Cep</label>
             <InputWrapper>
               <CepInput
-                // mask="99999-999"
                 type="text"
-                {...register('cep')}
+                register={register}
                 name="cep"
-                id="cep"
                 placeholder="12345-000"
                 onBlur={handleMapLocation}
               />
@@ -138,12 +136,11 @@ export function Register() {
 
             <label htmlFor="whatsappNumber">Whatsapp</label>
             <InputWrapper>
-              <InputMask
-                mask="(99) 99999-9999"
+              <PhoneInput
                 type="text"
-                {...register('whatsappNumber')}
+                register={register}
                 name="whatsappNumber"
-                id="whatsappNumber"
+                // id="whatsappNumber"
                 placeholder="(99) 99999-9999"
               />
             </InputWrapper>
