@@ -14,9 +14,14 @@ export function Dashboard() {
 
   return (
     <Container>
-      <h1>Bem vindo</h1>
+      <h1>Bem vindo ao FindAFriend</h1>
       <span>você está logado!!!</span>
-      <button onClick={Logout}>Logout</button>
+      <div style={{ display: 'flex', gap: '2rem' }}>
+        <button onClick={() => navigate(URLS.PET_REGISTER)}>
+          Cadastrar Pet
+        </button>
+        <button onClick={Logout}>Logout</button>
+      </div>
     </Container>
   )
 }
@@ -29,6 +34,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  gap: 2rem;
 
   h1 {
     color: ${(props) => props.theme.darkBlue};

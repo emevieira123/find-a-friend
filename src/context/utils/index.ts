@@ -34,3 +34,14 @@ export async function LoginRequest(email: string, password: string) {
     // return alert(error.message);
   }
 }
+
+export async function RefreshToken(token: string) {
+  try {
+    const request = await api.patch(URLS.REFRESH_TOKEN, { token })
+    return request.data
+  } catch (error: any) {
+    // if (error.response.status === 401 || error.response.status === 404) {
+    return toast.error('Credenciais inválidas')
+    // }
+  }
+}

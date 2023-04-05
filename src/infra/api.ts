@@ -1,4 +1,4 @@
-import { getUserLocalStorage } from '@/context/utils'
+import { getUserLocalStorage, RefreshToken } from '@/context/utils'
 import axios from 'axios'
 
 const API_BASE_URL = import.meta.env.VITE_BASE_URL
@@ -16,8 +16,10 @@ api.interceptors.request.use((config: any) => {
 })
 
 api.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
+  const user = getUserLocalStorage()
   if (err.response.status === 401) {
-    localStorage.clear()
+    // localStorage.clear()
+    RefreshToken(user.token)
   }
   return Promise.reject(err)
 })

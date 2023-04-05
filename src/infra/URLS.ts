@@ -9,6 +9,7 @@ export enum URLS {
   COORDINATES = '/location/coordinates/:cep',
   REQUIREMENTS = '/pets/adoption-requirements/:pet_id',
   LOGIN_REQUEST = '/auth/sessions',
+  REFRESH_TOKEN = '/auth/refresh-token',
   REGISTER_ORGANIZATION = '/orgs',
 
   // Rotas WEB
@@ -17,4 +18,6 @@ export enum URLS {
   DETAILS_PET_WEB = '/pet-details/:petId',
   LOGIN = '/login',
   REGISTER = '/register',
+  DASHBOARD = '/dashboard',
+  PET_REGISTER = '/pet-register',
 }

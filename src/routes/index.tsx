@@ -3,6 +3,7 @@ import { URLS } from '@/infra/URLS'
 import { Dashboard } from '@/pages/Dashboard'
 import { Login } from '@/pages/Login'
 import { PetDetails } from '@/pages/PetDetails'
+import { PetRegister } from '@/pages/PetResgister'
 import { Register } from '@/pages/Register'
 import { Routes, Route } from 'react-router-dom'
 import { Home } from '../pages/Home'
@@ -31,10 +32,18 @@ export function Router() {
         }
       />
       <Route
-        path="/dashboard"
+        path={URLS.DASHBOARD}
         element={
           <PrivateRouter>
             <Dashboard />
+          </PrivateRouter>
+        }
+      />
+      <Route
+        path={URLS.PET_REGISTER}
+        element={
+          <PrivateRouter>
+            <PetRegister />
           </PrivateRouter>
         }
       />
